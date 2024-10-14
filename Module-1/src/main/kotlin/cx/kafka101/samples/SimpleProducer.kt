@@ -1,10 +1,8 @@
-package cx.workshop.messageoriented.cx.kafka101.samples
+package cx.kafka101.samples
 
 
 import com.fasterxml.jackson.databind.JsonNode
-import com.fasterxml.jackson.databind.JsonSerializer
-import cx.workshop.messageoriented.http.objectMapper
-import cx.workshop.messageoriented.kafka.KafkaMessageProducer
+
 import mu.KotlinLogging
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerConfig

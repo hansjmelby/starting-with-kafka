@@ -1,4 +1,4 @@
-package cx.workshop.messageoriented.cx.kafka101.samples
+package cx.kafka101.samples
 
 import io.confluent.kafka.serializers.KafkaAvroDeserializer
 import org.apache.kafka.clients.consumer.KafkaConsumer

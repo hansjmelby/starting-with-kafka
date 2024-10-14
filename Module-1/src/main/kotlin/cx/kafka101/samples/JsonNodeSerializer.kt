@@ -1,4 +1,4 @@
-package cx.workshop.messageoriented.cx.kafka101.samples
+package cx.kafka101.samples
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
