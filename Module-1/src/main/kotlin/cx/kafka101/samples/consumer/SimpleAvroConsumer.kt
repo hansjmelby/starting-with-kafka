@@ -20,6 +20,10 @@ fun createAvroConsumer(): KafkaConsumer<String, Customer> {
         put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer::class.java.name)
         put(ConsumerConfig.GROUP_ID_CONFIG, "my-avro-consumer-groupV2") // Consumer group ID
         put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest") // Start from the earliest message
+        // Enable auto commit (true by default)
+        put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG,"true")
+        // Set the auto commit interval to 1 second,(default is 5000 ms)
+        put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG,"1000")
     }
 
     // Configure the Avro deserializer to use the specific Java class
