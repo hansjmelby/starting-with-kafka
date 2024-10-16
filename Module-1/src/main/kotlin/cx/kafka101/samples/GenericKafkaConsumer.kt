@@ -60,7 +60,7 @@ class GenericKafkaConsumer(val file:String, val topics:List<String>, val service
         val props = loadConfig("client.properties")
         props[ConsumerConfig.GROUP_ID_CONFIG] = consumerID
         props[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java
-        props[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] =
+        props[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java
         return KafkaConsumer(props)
     }
 }

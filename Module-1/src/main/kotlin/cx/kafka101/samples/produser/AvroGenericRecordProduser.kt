@@ -1,4 +1,4 @@
-package cx.kafka101.samples
+package org.example.cx.kafka101.samples.produser
 
 import io.confluent.kafka.serializers.KafkaAvroSerializer
 import org.apache.avro.generic.GenericData

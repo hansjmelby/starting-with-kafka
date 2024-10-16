@@ -8,6 +8,7 @@ import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.common.serialization.StringSerializer
+import org.example.cx.kafka101.samples.serializers.JsonNodeSerializer
 import java.util.*
 
 private val logger = KotlinLogging.logger { }
@@ -30,7 +31,10 @@ fun sendStringMeldingMedNativeProducer(topic:String = "test"){
             "key","value"
         )
     )
+
     val v = futureResult.get()
+    producer.flush()
+    producer.close()
     logger.info { "message sent to topic $topic" }
 
 }
@@ -65,7 +69,7 @@ fun sendJsonMeldingMedNativeJsonProducer(topic:String = "test"){
 
 }
 fun sendAvroMeldingMedNativeJsonProducer(topic:String = "test"){
-    val producer = createLensesAvroProducer() //merk denne!!
+    val producer = createLensesJson_Producer() //merk denne!!
 
     val gadget = Gadget("RED","1",30)
     val futureResult = producer.send(
@@ -118,7 +122,7 @@ fun createLensesJsonProducer(): KafkaProducer<String, JsonNode> {
     return KafkaProducer<String, JsonNode>(props)
 }
 
-fun createLensesAvroProducer(): KafkaProducer<String, JsonNode> {
+fun createLensesJson_Producer(): KafkaProducer<String, JsonNode> {
     // Kafka producer properties
     val props = Properties().apply {
         put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092")  // Kafka broker address

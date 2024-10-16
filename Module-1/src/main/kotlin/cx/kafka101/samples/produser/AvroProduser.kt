@@ -1,5 +1,6 @@
 
-import cx.kafka101.samples.Customer
+
+import com.example.Customer
 import io.confluent.kafka.serializers.KafkaAvroSerializer
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerConfig

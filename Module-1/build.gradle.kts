@@ -57,7 +57,7 @@ dependencies {
     implementation("io.ktor:ktor-client-json:$ktorVersion")
     implementation("org.apache.httpcomponents:httpclient:$httpClientVersion")
     // AVRO SPESIFIC
-    implementation("io.confluent:kafka-avro-serializer:5.0.0")
+    implementation("io.confluent:kafka-avro-serializer:7.7.0")
     implementation("io.confluent:kafka-streams-avro-serde:7.0.0")
 
     // --END AVRO---
@@ -98,17 +98,18 @@ avro {
     //outputDir.set(file("src/main/kotlin"))  // Directory for generated Java classes
     isCreateSetters.set(true)  // Optional: Generate setters
     stringType.set("String")  // Set Avro strings to use Java String type
+    kotlin
 }
 
-tasks.register<Exec>("fetchAvroSchema") {
-    val schemaUrl = "http://localhost:8081/subjects/nyc_yellow_taxi_trip_data-value/versions/latest"
-    val schemaFile = file("src/main/avro/nyc_yellow_taxi_trip.avsc")
+//tasks.register<Exec>("fetchAvroSchema") {
+    //val schemaUrl = "http://localhost:8081/subjects/nyc_yellow_taxi_trip_data-value/versions/latest"
+    //val schemaFile = file("src/main/avro/nyc_yellow_taxi_trip.avsc")
 
-    commandLine("curl", "-X", "GET", schemaUrl, "-o", schemaFile.absolutePath)
-}
+    //commandLine("curl", "-X", "GET", schemaUrl, "-o", schemaFile.absolutePath)
+//}
 
 tasks.named("build") {
-    dependsOn("fetchAvroSchema")
+    //dependsOn("fetchAvroSchema")
 }
 
 tasks {

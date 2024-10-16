@@ -1,29 +1,30 @@
-package cx.kafka101.samples
+package org.example.cx.kafka101.samples.consumer
 
+
+import com.example.Customer
 import io.confluent.kafka.serializers.KafkaAvroDeserializer
+import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.serialization.StringDeserializer
 import java.util.Properties
 
-data class Customer(
-    val id: Int,
-    val name: String,
-    val email: String,
-    val age: Int
-)
+
+
 
 fun createAvroConsumer(): KafkaConsumer<String, Customer> {
     val props = Properties().apply {
-        put("bootstrap.servers", "localhost:9092")
-        put("group.id", "test")
-        put("key.deserializer", StringDeserializer::class.java.name)
-        put("value.deserializer", KafkaAvroDeserializer::class.java.name)
         put("schema.registry.url", "http://localhost:8081")
         put("specific.avro.reader", "true")  // Enable specific Avro reader
-        put("value.deserializer", KafkaAvroDeserializer::class.java.name)
+        put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092")
+        put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer::class.java.name)
+        put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer::class.java.name)
+        put(ConsumerConfig.GROUP_ID_CONFIG, "my-avro-consumer-groupV2") // Consumer group ID
+        put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest") // Start from the earliest message
     }
 
     // Configure the Avro deserializer to use the specific Java class
+
+    /*
     val deserializer = KafkaAvroDeserializer()
     deserializer.configure(
         mapOf(
@@ -32,6 +33,8 @@ fun createAvroConsumer(): KafkaConsumer<String, Customer> {
         ),
         false
     )
+
+     */
 
     return KafkaConsumer<String, Customer>(props)
 }
