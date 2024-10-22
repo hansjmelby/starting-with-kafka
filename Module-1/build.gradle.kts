@@ -114,6 +114,7 @@ tasks {
         kotlinOptions.jvmTarget = "15"
     }
 
+
     test {
         useJUnitPlatform()
         //Trengs inntil videre for bytebuddy med java 16, som brukes av mockk.
