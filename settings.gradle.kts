@@ -3,4 +3,4 @@ plugins {
 }
 rootProject.name = "Starting with kafka"
 include ("Module-1")
-
+include("Module-2-Streaming")

@@ -79,15 +79,7 @@ dependencies {
     testImplementation ("org.testcontainers:postgresql:1.16.0")
     testImplementation ("org.testcontainers:junit-jupiter:1.16.0")
     //Database
-    implementation("org.postgresql:postgresql:42.5.1")
-    implementation("org.flywaydb:flyway-core:$flywayVersion")
-    implementation("com.zaxxer:HikariCP:$hikariVersion")
-    implementation("com.github.seratch:kotliquery:$kotliqueryVersion")
 
-    implementation("dk.tbsalling:aismessages:3.3.2")
-    implementation("dk.tbsalling:aisutils:1.0.0")
-
-    implementation("dk.dma.ais.lib:ais-lib-messages:2.8.4")
 
     //Streams dependencies
     implementation("org.apache.kafka:kafka-streams:3.5.1")
@@ -120,19 +112,6 @@ tasks {
 
     compileTestKotlin {
         kotlinOptions.jvmTarget = "15"
-    }
-
-    shadowJar {
-        archiveBaseName.set("app")
-        archiveClassifier.set("")
-        archiveVersion.set("")
-        manifest {
-            attributes(
-                mapOf(
-                    "Main-Class" to mainClass
-                )
-            )
-        }
     }
 
     test {
