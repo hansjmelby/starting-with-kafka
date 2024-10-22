@@ -1,4 +1,4 @@
-
+package org.example.cx.kafka101.samples.produser
 
 import com.example.Customer
 import io.confluent.kafka.serializers.KafkaAvroSerializer
