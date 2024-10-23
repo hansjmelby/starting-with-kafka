@@ -11,7 +11,7 @@ import java.util.*
 private val logger = KotlinLogging.logger { }
 private val TOPIC = "test"
 
-fun main(args: Array<String>) {
+fun main() {
     println("Starter basic producer")
     val props = Properties()
 
