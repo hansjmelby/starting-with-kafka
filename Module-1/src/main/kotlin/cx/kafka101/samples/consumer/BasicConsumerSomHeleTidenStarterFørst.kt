@@ -1,4 +1,4 @@
-package org.example.cx.kafka101.samples.consumer
+package cx.kafka101.samples.consumer
 
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.consumer.KafkaConsumer

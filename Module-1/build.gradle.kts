@@ -123,5 +123,5 @@ tasks {
 }
 
 application {
-    mainClass.set("no.nav.medlemskap.saga.ApplicationKt")
+
 }
