@@ -1,0 +1,10 @@
+INSERT INTO BankTransaction (accountNumber, sum, count, time) VALUES (1234567890123456, 5000, 1, '2023-01-01 10:15:00');
+INSERT INTO BankTransaction (accountNumber, sum, count, time) VALUES (1234567890123456, -1500, 2, '2023-01-02 14:30:00');
+INSERT INTO BankTransaction (accountNumber, sum, count, time) VALUES (9876543210987654, 12000, 1, '2023-01-03 09:45:00');
+INSERT INTO BankTransaction (accountNumber, sum, count, time) VALUES (9876543210987654, -2000, 2, '2023-01-03 12:00:00');
+INSERT INTO BankTransaction (accountNumber, sum, count, time) VALUES (1122334455667788, 25000, 1, '2023-01-04 08:00:00');
+INSERT INTO BankTransaction (accountNumber, sum, count, time) VALUES (1122334455667788, -5000, 2, '2023-01-05 15:00:00');
+INSERT INTO BankTransaction (accountNumber, sum, count, time) VALUES (3344556677889900, 7000, 1, '2023-01-06 18:20:00');
+INSERT INTO BankTransaction (accountNumber, sum, count, time) VALUES (3344556677889900, 3000, 2, '2023-01-07 10:30:00');
+INSERT INTO BankTransaction (accountNumber, sum, count, time) VALUES (5566778899001122, 4500, 1, '2023-01-08 11:15:00');
+INSERT INTO BankTransaction (accountNumber, sum, count, time) VALUES (5566778899001122, -2500, 2, '2023-01-09 14:45:00');
