@@ -27,13 +27,23 @@ fun main() {
     val producer = createCustomerAvroProducer()
 
     // Create a Customer object
-    val customer = Customer(1, "John Doe", "john.doe@example.com", 30)
+    val customer = Customer(1, "John Doe", "john.doe@example.com", 31)
+    val customer2 = Customer(2, "Jane Doe", "jane.doe@example.com", 21)
 
     // Send the Customer object to the "customer-topic" Kafka topic
-    val record = ProducerRecord<String, Customer>("customer-topic", "customer-1", customer)
+    val record = ProducerRecord<String, Customer>("customer", customer.id.toString(), customer)
+    val record2 = ProducerRecord<String, Customer>("customer", customer2.id.toString(), customer2)
 
     // Send the record and handle potential errors
     producer.send(record) { metadata, exception ->
+        if (exception == null) {
+            println("Customer sent successfully with metadata: $metadata")
+        } else {
+            println("Error sending customer: ${exception.message}")
+            exception.printStackTrace()
+        }
+    }
+    producer.send(record2) { metadata, exception ->
         if (exception == null) {
             println("Customer sent successfully with metadata: $metadata")
         } else {

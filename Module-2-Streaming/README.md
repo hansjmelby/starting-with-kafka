@@ -139,3 +139,25 @@ value.converter.schemas.enable=false
 
 
 ```
+
+## KAfka connect sink til db fra topic (jdbc sink)
+```
+name=customer-jdbc-sink-connector
+connector.class=io.confluent.connect.jdbc.JdbcSinkConnector
+topics=customer
+connection.url=jdbc:postgresql://192.168.50.62:5432/postgres
+connection.user=postgres
+connection.password=pass
+auto.create=true
+auto.evolve=true
+insert.mode=upsert
+pk.mode=record_key
+pk.fields=id
+delete.enabled=true
+key.converter=org.apache.kafka.connect.storage.StringConverter
+value.converter=io.confluent.connect.avro.AvroConverter
+value.converter.schema.registry.url=http://127.0.0.1:8081
+batch.size=1
+linger.ms=5000
+table.name.format=customers
+```
