@@ -1,4 +1,4 @@
-package org.example.cx.kafka102.streaming.samples
+package cx.kafka102.streaming.samples
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.MapperFeature

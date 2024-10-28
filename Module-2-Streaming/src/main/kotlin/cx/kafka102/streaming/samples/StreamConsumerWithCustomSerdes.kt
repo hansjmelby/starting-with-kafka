@@ -1,4 +1,4 @@
-package org.example.cx.kafka102.streaming.samples
+package cx.kafka102.streaming.samples
 
 import org.apache.kafka.common.serialization.Serdes
 import org.apache.kafka.streams.KafkaStreams

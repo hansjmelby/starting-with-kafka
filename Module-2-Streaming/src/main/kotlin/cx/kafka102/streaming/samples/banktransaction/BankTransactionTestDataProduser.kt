@@ -6,8 +6,8 @@ import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.common.serialization.LongSerializer
-import org.example.cx.kafka102.streaming.samples.BankTransaction
-import org.example.cx.kafka102.streaming.samples.BankTransactionSerializer
+import cx.kafka102.streaming.samples.BankTransaction
+import cx.kafka102.streaming.samples.BankTransactionSerializer
 import java.time.LocalDate
 import java.util.Properties
 import kotlin.collections.set

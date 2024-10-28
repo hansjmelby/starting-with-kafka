@@ -1,5 +1,4 @@
-package org.example.cx.kafka102.streaming.samples
-import org.example.cx.kafka102.streaming.samples.Gadget
+package cx.kafka102.streaming.samples
 import org.apache.kafka.common.serialization.Deserializer
 import org.apache.kafka.common.serialization.Serde
 import org.apache.kafka.common.serialization.Serializer
