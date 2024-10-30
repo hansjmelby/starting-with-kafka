@@ -1,0 +1,9 @@
+{
+  "type": "record",
+  "name": "AvgTemperature",
+  "namespace": "com.example",
+  "fields": [
+    { "name": "count", "type": "long" },
+    { "name": "sum", "type": "long" }
+  ]
+}
