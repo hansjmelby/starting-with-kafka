@@ -20,7 +20,7 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
     //Streams dependencies
-    implementation("org.apache.kafka:kafka-streams:3.8.0")
+    implementation("org.apache.kafka:kafka-streams:3.5.1")
     implementation("org.apache.kafka:kafka-clients:$kafkaVersion")
     implementation("io.confluent:kafka-avro-serializer:7.7.1")
     implementation("io.confluent:kafka-streams-avro-serde:7.7.1")

@@ -76,7 +76,7 @@ fun main() {
             .withValueSerde(BankTransactionSumSerde())
     )
 
-    countandSumStream.to("BankStatusTopic")
+    countandSumStream.toStream().to("BankStatusTopic")
 
 
 
