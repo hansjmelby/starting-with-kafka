@@ -6,9 +6,6 @@ val kotlinLoggerVersion = "1.8.3"
 val resilience4jVersion = "1.5.0"
 val logstashVersion = "7.2"
 val logbackVersion = "1.2.9"
-val flywayVersion = "6.5.0"
-val hikariVersion = "3.4.5"
-val kotliqueryVersion = "1.3.1"
 val httpClientVersion = "4.5.13"
 val mainClass = "no.nav.medlemskap.saga.ApplicationKt"
 
@@ -106,12 +103,12 @@ tasks.named("build") {
 
 tasks {
     compileKotlin {
-        kotlinOptions.jvmTarget = "15"
+        kotlinOptions.jvmTarget = "18"
         kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
     }
 
     compileTestKotlin {
-        kotlinOptions.jvmTarget = "15"
+        kotlinOptions.jvmTarget = "18"
     }
 
 

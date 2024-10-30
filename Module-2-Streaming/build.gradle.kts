@@ -6,6 +6,7 @@ val logbackVersion = "1.2.9"
 val logstashVersion = "7.2"
 plugins {
     kotlin("jvm") version "2.0.20"
+    id("com.github.davidmc24.gradle.plugin.avro") version "1.5.0"
 }
 
 group = "no.cx.workshop.streaming"
@@ -19,9 +20,10 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
     //Streams dependencies
-    implementation("org.apache.kafka:kafka-streams:3.5.1")
-    implementation("io.confluent:kafka-streams-avro-serde:7.0.0")
+    implementation("org.apache.kafka:kafka-streams:3.8.0")
     implementation("org.apache.kafka:kafka-clients:$kafkaVersion")
+    implementation("io.confluent:kafka-avro-serializer:7.7.1")
+
     //jackson
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
     implementation("com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion")
@@ -49,6 +51,13 @@ dependencies {
     implementation("io.github.microutils:kotlin-logging:$kotlinLoggerVersion")
     implementation("net.logstash.logback:logstash-logback-encoder:$logstashVersion")
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
+}
+
+avro {
+    //outputDir.set(file("src/main/kotlin"))  // Directory for generated Java classes
+    isCreateSetters.set(true)  // Optional: Generate setters
+    stringType.set("String")  // Set Avro strings to use Java String type
+    kotlin
 }
 
 tasks.test {
