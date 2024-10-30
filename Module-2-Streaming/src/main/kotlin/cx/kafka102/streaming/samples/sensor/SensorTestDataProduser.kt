@@ -38,7 +38,7 @@ fun run(){
             sensorIdList.random(),
             (-10..30).random(),
             (20..90).random(),
-            (0..5000).random()
+            false
         )
         val record = ProducerRecord<String, Sensor>("sensor-topic",sensor.serialNumber, sensor)
         val result = producer.send(record).get()

@@ -1,9 +1,13 @@
 {
   "type": "record",
-  "name": "Sensor",
+  "name": "SensorAlarm",
   "namespace": "com.example",
   "fields": [
     { "name": "serialNumber", "type": "string" },
+    { "name": "location", "type": "string" },
+    { "name": "owner", "type": "string" },
+    { "name": "city", "type": "string" },
+    { "name": "armed", "type": "boolean" },
     { "name": "temperature", "type": "int" },
     { "name": "moisture", "type": "int" },
     { "name": "alarm", "type": "boolean" }

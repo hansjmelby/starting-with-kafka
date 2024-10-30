@@ -1,0 +1,12 @@
+{
+  "type": "record",
+  "name": "SensorLocation",
+  "namespace": "com.example",
+  "fields": [
+    { "name": "serialNumber", "type": "string" },
+    { "name": "location", "type": "string" },
+    { "name": "owner", "type": "string" },
+    { "name": "city", "type": "string" },
+    { "name": "armed", "type": "boolean" }
+  ]
+}
