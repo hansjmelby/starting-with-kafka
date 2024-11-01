@@ -34,6 +34,7 @@ fun main() {
     val props = Properties()
     props[StreamsConfig.APPLICATION_ID_CONFIG] = "kotlin-kafka-bank-balance-application"
     props[StreamsConfig.BOOTSTRAP_SERVERS_CONFIG] = "localhost:9092"
+    props.put(StreamsConfig.STATE_DIR_CONFIG, "c://tmp//state//");
     /*
     * Add this to enable exaclly once
     props[StreamsConfig.PROCESSING_GUARANTEE_CONFIG] = StreamsConfig.EXACTLY_ONCE_V2
@@ -71,7 +72,7 @@ fun main() {
     val countandSumStream = groupedByBankNumber.aggregate(
         initializer,
         countAndSumAgregator,
-        Materialized.`as`<Long, BankTransaction, KeyValueStore<Bytes, ByteArray>>("bank-Transaction-store2")
+        Materialized.`as`<Long, BankTransaction, KeyValueStore<Bytes, ByteArray>>("bank-Transaction-store")
             .withKeySerde(Serdes.Long())
             .withValueSerde(BankTransactionSumSerde())
     )
@@ -105,7 +106,7 @@ fun main() {
                 val store: ReadOnlyKeyValueStore<Long, BankTransaction> = streams
                     .store(
                         StoreQueryParameters.fromNameAndType(
-                            "bank-Transaction-store2",
+                            "bank-Transaction-store",
                             QueryableStoreTypes.keyValueStore<Long, BankTransaction>()
                         )
                     )
@@ -118,6 +119,32 @@ fun main() {
                     }
                 }
                 call.respond(allCounts)
+            }
+            get("/transaction-agregates/{accountNumber}") {
+
+                val accountNumber = call.parameters["accountNumber"]
+                if (accountNumber != null) {
+
+
+                    // Query the store for the category count
+                    val store: ReadOnlyKeyValueStore<Long, BankTransaction> = streams
+                        .store(
+                            StoreQueryParameters.fromNameAndType(
+                                "bank-Transaction-store",
+                                QueryableStoreTypes.keyValueStore<Long, BankTransaction>()
+                            )
+                        )
+                    val account = store.get(accountNumber.toLong())
+                    if (account != null) {
+                        call.respond(HttpStatusCode.OK, account)
+                    } else {
+                        call.respond(HttpStatusCode.NotFound, "account not found")
+                    }
+                }
+                else{
+                    call.respond(HttpStatusCode.BadRequest, "Missing or invalid account ID")
+                }
+
             }
         }
     }.start(wait = true)

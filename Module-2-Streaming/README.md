@@ -10,6 +10,10 @@ You need the following to get the most out of this module
 - gradle installed
 - Java 20
 
+## default state store location (windows)
+C:\Users\M118946\AppData\Local\Temp\kafka-streams
+ ## Relevante artikler
+https://blog.dy.engineering/kafka-streams-and-rocksdb-in-the-space-time-continuum-and-a-little-bit-of-configuration-40edb5ee9ed7
 
 ## Database oppsett
 

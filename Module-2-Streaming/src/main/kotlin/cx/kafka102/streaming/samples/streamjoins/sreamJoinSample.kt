@@ -25,7 +25,7 @@ import java.util.Properties
 fun <T : SpecificRecord> getSpecificAvroSerde(serdeConfig: Map<String, Any>): SpecificAvroSerde<T> {
     val specificAvroSerde = SpecificAvroSerde<T>()
     specificAvroSerde.configure(serdeConfig, false)
-    return specificAvroSerde
+    return specificAvroSerde.apply { configure(mapOf(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG to "http://localhost:8081"), false) }
 }
 
 fun main(){
@@ -37,9 +37,7 @@ fun main(){
         put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde::class.java)
     }
     val builder =  StreamsBuilder();
-    //var sensorSerde:SpecificAvroSerde<Sensor>  = getSpecificAvroSerde(mapOf<String, Sensor>());
 
-    //var sensorAlarmSerde:SpecificAvroSerde<SensorAlarm> = getSpecificAvroSerde(mapOf<String, SensorAlarm>());
     val locationSerde = SpecificAvroSerde<SensorLocation>().apply {
         configure(mapOf(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG to "http://localhost:8081"), false)
     }
