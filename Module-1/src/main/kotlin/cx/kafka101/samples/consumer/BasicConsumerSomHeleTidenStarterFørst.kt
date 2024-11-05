@@ -36,6 +36,22 @@ fun main() {
     // Subscribe to the topic
     consumer.subscribe(listOf(topic))
 
+    // Poll for å hente partisjonsinformasjon
+    while (consumer.assignment().isEmpty()) {
+        println("Venter på partisjonstildeling...")
+        consumer.poll(Duration.ofMillis(1000))  // Fortsett polling til partisjoner er tildelt
+    }
+    val partitions = consumer.assignment()
+
+    // Sette offset til starten for alle partisjoner
+    consumer.seekToBeginning(partitions)
+
+    // Bekrefte hvilke offsets som er satt
+    for (partition in partitions) {
+        val offset = consumer.position(partition)
+        println("Offset for partisjon ${partition.partition()} satt til $offset")
+    }
+
     // Poll the broker for new data
     try {
         while (true) {

@@ -7,7 +7,6 @@ import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.common.serialization.StringSerializer
 import java.time.Instant
-import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit
 import java.util.*
 

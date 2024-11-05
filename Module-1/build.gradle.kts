@@ -6,9 +6,6 @@ val kotlinLoggerVersion = "1.8.3"
 val resilience4jVersion = "1.5.0"
 val logstashVersion = "7.2"
 val logbackVersion = "1.2.9"
-val flywayVersion = "6.5.0"
-val hikariVersion = "3.4.5"
-val kotliqueryVersion = "1.3.1"
 val httpClientVersion = "4.5.13"
 val mainClass = "no.nav.medlemskap.saga.ApplicationKt"
 
@@ -79,15 +76,7 @@ dependencies {
     testImplementation ("org.testcontainers:postgresql:1.16.0")
     testImplementation ("org.testcontainers:junit-jupiter:1.16.0")
     //Database
-    implementation("org.postgresql:postgresql:42.5.1")
-    implementation("org.flywaydb:flyway-core:$flywayVersion")
-    implementation("com.zaxxer:HikariCP:$hikariVersion")
-    implementation("com.github.seratch:kotliquery:$kotliqueryVersion")
 
-    implementation("dk.tbsalling:aismessages:3.3.2")
-    implementation("dk.tbsalling:aisutils:1.0.0")
-
-    implementation("dk.dma.ais.lib:ais-lib-messages:2.8.4")
 
     //Streams dependencies
     implementation("org.apache.kafka:kafka-streams:3.5.1")
@@ -114,26 +103,14 @@ tasks.named("build") {
 
 tasks {
     compileKotlin {
-        kotlinOptions.jvmTarget = "15"
+        kotlinOptions.jvmTarget = "18"
         kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
     }
 
     compileTestKotlin {
-        kotlinOptions.jvmTarget = "15"
+        kotlinOptions.jvmTarget = "18"
     }
 
-    shadowJar {
-        archiveBaseName.set("app")
-        archiveClassifier.set("")
-        archiveVersion.set("")
-        manifest {
-            attributes(
-                mapOf(
-                    "Main-Class" to mainClass
-                )
-            )
-        }
-    }
 
     test {
         useJUnitPlatform()

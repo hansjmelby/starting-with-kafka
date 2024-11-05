@@ -1,4 +1,4 @@
-package org.example.cx.kafka101.samples.consumer
+package cx.kafka101.samples.consumer
 
 
 import com.example.Customer
@@ -6,6 +6,7 @@ import io.confluent.kafka.serializers.KafkaAvroDeserializer
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.serialization.StringDeserializer
+import java.time.Duration
 import java.util.Properties
 
 
@@ -48,7 +49,7 @@ fun main() {
     consumer.subscribe(listOf("customer-topic"))
 
     while (true) {
-        val records = consumer.poll(java.time.Duration.ofSeconds(1))
+        val records = consumer.poll(Duration.ofSeconds(1))
         println("record found : ${records.count()}")
         for (record in records) {
 

@@ -1,0 +1,11 @@
+{
+  "type": "record",
+  "name": "Sensor",
+  "namespace": "com.example",
+  "fields": [
+    { "name": "serialNumber", "type": "string" },
+    { "name": "temperature", "type": "int" },
+    { "name": "moisture", "type": "int" },
+    { "name": "alarm", "type": "boolean" }
+  ]
+}
