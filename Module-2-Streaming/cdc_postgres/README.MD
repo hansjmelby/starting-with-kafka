@@ -97,4 +97,39 @@ value.converter.schemas.enable=false
 merk nytt topic : db_data_onekey.public.banktransaction
 se på data i topic. Merk skjema
 
+## Oppsett av JDBC Sink mot postgres
+
+### før du starter
+* kjør createCustomerAvroProducer for å få test data på topic
+* bekreft at det ligger meldinger på topic med AVRO som verdi
+
+3. velge connectors
+4. velge new connector
+5. velge jdbc (sink)
+```
+connector.class=io.confluent.connect.jdbc.JdbcSinkConnector
+table.name.format=customers
+connection.password=***********
+topics=customer
+batch.size=1
+value.converter.schema.registry.url=http://127.0.0.1:8081
+delete.enabled=true
+auto.evolve=true
+connection.user=postgres
+name=customer-jdbc-sink-connector
+auto.create=true
+connection.url=jdbc:postgresql://192.168.50.62:5432/postgres
+value.converter=io.confluent.connect.avro.AvroConverter
+insert.mode=upsert
+pk.mode=record_key
+key.converter=org.apache.kafka.connect.storage.StringConverter
+pk.fields=id
+linger.ms=5000
+```
+```sql
+select * from customers
+```
+
+* se hva som skjer om lager en ny melding på topic der ID er samme, menny verdi (eksempelvis ny alder)
+* se hva skjer om du sender med en nøkkel og null verdi i value
 
