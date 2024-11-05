@@ -49,6 +49,7 @@ CREATE TABLE BankTransaction (
                                  PRIMARY KEY (accountNumber, time)
 );
 
+
 INSERT INTO BankTransaction (accountNumber, sum, count, time) VALUES (1234567890123456, 5000, 1, '2023-01-01 10:15:00');
 INSERT INTO BankTransaction (accountNumber, sum, count, time) VALUES (1234567890123456, -1500, 2, '2023-01-02 14:30:00');
 INSERT INTO BankTransaction (accountNumber, sum, count, time) VALUES (9876543210987654, 12000, 1, '2023-01-03 09:45:00');
