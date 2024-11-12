@@ -17,17 +17,21 @@ docker run -e ADV_HOST=127.0.0.1 -e EULA="https://licenses.lenses.io/download/le
 ### sett opp en source connector for postgress
 
 
-![](cdc_postgress_source.png).
+![](cdc_postgress_source.png)
 
 ### Fyll in nødvendge felter . Kopier fra eksempel under : kafka connector med full sporbarhet av endringer
 
 
-![](cdc_postgress_source_2.png).
+![](cdc_postgress_source_2.png)
+
+### Bekreft kjørende prosess med å se på
+![](cdc_running_process.png)
+
+### Bekreft at det kommer meldinger på topic
+![](cdc_new_topic.png)
 
 ## kafka connector med full sporbarhet av endringer
 
-### bekreft kjørende prosess med å se på 
-![](cdc_running_process.png).
 ```
 connector.class=io.debezium.connector.postgresql.PostgresConnector
 publication.autocreate.mode=all_tables
@@ -48,10 +52,10 @@ name=postgresscdc
 table.include.list=public.banktransaction
 snapshot.mode=initial
 ```
-merk nytt topic : db.public.banktransaction
+#### merk nytt topic : db.public.banktransaction
 se på data i topic. Merk skjema
 
-## kafka connector med kun nye verdier (gjenta seg 3-5)
+## kafka connector med kun nye verdier
 ```
 connector.class=io.debezium.connector.postgresql.PostgresConnector
 publication.autocreate.mode=all_tables
@@ -75,7 +79,7 @@ transforms=unwrap
 transforms.unwrap.type=io.debezium.transforms.ExtractNewRecordState
 transforms.unwrap.drop.tombstones=true
 ```
-merk nytt topic : db_data.public.banktransaction
+#### merk nytt topic : db_data.public.banktransaction
 se på data i topic. Merk skjema
 
 ## kafka connector med kun nye verdier og en enkelt verdi i key
@@ -109,18 +113,27 @@ key.converter.schemas.enable=false
 value.converter=org.apache.kafka.connect.json.JsonConverter
 value.converter.schemas.enable=false
 ```
-merk nytt topic : db_data_onekey.public.banktransaction
+#### merk nytt topic : db_data_onekey.public.banktransaction
 se på data i topic. Merk skjema
 
 ## Oppsett av JDBC Sink mot postgres
 
 ### før du starter
-* kjør createCustomerAvroProducer for å få test data på topic
-* bekreft at det ligger meldinger på topic med AVRO som verdi
+* Kjør CustomerAvroProducer for å få test data på topic
+* Bekreft at det ligger meldinger på cutomer topic med AVRO som verdi
 
-3. velge connectors
-4. velge new connector
-5. velge jdbc (sink)
+
+### sett opp ny SINK! connector
+![](JDBC_Sink.png)
+### sakse in eksempel på konfigurasjon under 
+![](JDBC_Sink_2.png)
+
+### kjør spørringer mot database for å bekrefte at data er lagt in i database
+
+```sql
+select * from customers
+```
+
 ```
 connector.class=io.confluent.connect.jdbc.JdbcSinkConnector
 table.name.format=customers
@@ -141,10 +154,8 @@ key.converter=org.apache.kafka.connect.storage.StringConverter
 pk.fields=id
 linger.ms=5000
 ```
-```sql
-select * from customers
-```
 
-* se hva som skjer om lager en ny melding på topic der ID er samme, menny verdi (eksempelvis ny alder)
-* se hva skjer om du sender med en nøkkel og null verdi i value
+
+### Se hva som skjer om lager en ny melding på topic der ID er samme, menny verdi (eksempelvis ny alder)
+### Se hva skjer om du sender med en nøkkel og null verdi i value
 
