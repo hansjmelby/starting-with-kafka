@@ -2,17 +2,32 @@
 1. Ha en kjørende instans av Lenses Docker image
 2. Docker image må ha både broker og schema registry port forwarnig satt opp
 
-
+```
 docker run -e ADV_HOST=127.0.0.1 -e EULA="https://licenses.lenses.io/download/lensesdl?id=NØKKEL_FRA_EPOST" --rm -p 3030:3030 -p 9092:9092 -p 8081:8081 lensesio/box
-
+```
 ## Sette opp Source connector
-1. Logg in i lenses
-   2. localhost:3030 - admin/admin
-3. velge connectors
-4. velge new connector
-5. velge CDC Postgres
+
+#### Login inn i på http://localhost:3030. Brukernavn = admin, passord = admin
+
+### Velg connector fra menyen
+![](lenses_connectors_1.png).
+
+### Velg new Connector
+
+### sett opp en source connector for postgress
+
+
+![](cdc_postgress_source.png).
+
+### Fyll in nødvendge felter . Kopier fra eksempel under : kafka connector med full sporbarhet av endringer
+
+
+![](cdc_postgress_source_2.png).
 
 ## kafka connector med full sporbarhet av endringer
+
+### bekreft kjørende prosess med å se på 
+![](cdc_running_process.png).
 ```
 connector.class=io.debezium.connector.postgresql.PostgresConnector
 publication.autocreate.mode=all_tables

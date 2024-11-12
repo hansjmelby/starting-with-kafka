@@ -1,19 +1,25 @@
 
 # Oppsett av lokal Postgress
 
+### Via kommando linje ,  start følgende docker containere
+
 ```
 docker build -t my-postgres-cdc .
 docker run -d --name my-postgres-cdc -p 5432:5432 my-postgres-cdc
-docker run -p 80:80 -e "PGADMIN_DEFAULT_EMAIL=user@computas.no" -e "PGADMIN_DEFAULT_PASSWORD=password" -d dpage/pgadmin4
+docker run -p 80:80 -e "PGADMIN_DEFAULT_EMAIL=user@computas.com" -e "PGADMIN_DEFAULT_PASSWORD=password" -d dpage/pgadmin4
 ```
 
 ## Start PGAdmin i browser
-
+#### Bruk følgende url til å logge deg in oå PGAdmin via browser
 http://localhost/login?next=/
  * username = user@computas.com
  * password = password
 
 ## Lage en connecton mot lokal database
+ 1.  I PGAdmin , sett opp en connection mot databasen.
+![](pgadmin1.png).
+![](postgress_connection.png)
+
 ```
 * Brukernavn : postgres
 * passord    : pass
@@ -22,7 +28,11 @@ http://localhost/login?next=/
 ```
 
 ## definer en tabell og last test data
+#### Gå in i query tool og kjør sql skriptene under .
+#### For å kjøre sql kommandoer, trykk på pilen, markert i gult .
 
+![](query_tool.png)
+![](query_tool1.png)
 ``` sql
 CREATE TABLE BankTransaction (
                                  accountNumber BIGINT NOT NULL,
@@ -43,3 +53,5 @@ INSERT INTO BankTransaction (accountNumber, sum, count, time) VALUES (3344556677
 INSERT INTO BankTransaction (accountNumber, sum, count, time) VALUES (5566778899001122, 4500, 1, '2023-01-08 11:15:00');
 
 ```
+
+## Når databasen er satt opp og konfigurert riktig, så kan du begynne å sette opp CDC connector fra lenses
