@@ -39,9 +39,14 @@ fun simpleSampleStreamWithSerdesLENSES() {
     val gadgets = builder.stream(gadgetsinputTopic, Consumed.with(Serdes.String(), gadgetSerde))
 
     val branches = gadgets.split(Named.`as`("Splitt"))
-        .branch({ key, value -> value.color == "RED" }, Branched.withConsumer { ks -> ks.to("red-topic") })
-        .branch({ key, value -> value.color == "BLUE" }, Branched.withConsumer { ks -> ks.to("blue-topic") })
-        .defaultBranch(Branched.withConsumer { ks -> ks.to("other-topic") })
+        .branch({ key, value -> value.color == "RED" }, Branched.withConsumer {
+            ks ->
+            ks.to("red-topic") })
+        .branch({ key, value -> value.color == "BLUE" }, Branched.withConsumer {
+            ks ->
+            ks.to("blue-topic") })
+        .defaultBranch(Branched.withConsumer {
+            ks -> ks.to("other-topic") })
 
     // 6. Bygg topologien
     val topology = builder.build()
