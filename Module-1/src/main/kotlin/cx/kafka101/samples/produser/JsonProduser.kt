@@ -38,11 +38,12 @@ fun main(args: Array<String>) {
         val gadget = Gadget(color=picColor(),id=(1..10).random().toString(), temp =(1..10).random())
         val futureResult = producer.send(
             ProducerRecord(
-                "GADGET-JSON",
+                "JsonGadgetTopic",
                 gadget.id, objectMapper.valueToTree(gadget),
             )
         )
         val v = futureResult.get()
+        println("one down")
     }
 }
 fun picColor():String {

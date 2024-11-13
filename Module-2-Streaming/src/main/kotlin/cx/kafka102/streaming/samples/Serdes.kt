@@ -13,6 +13,22 @@ class GadgetSerializer : Serializer<Gadget> {
 
 }
 
+class StringDeserializer : Deserializer<String> {
+    override fun deserialize(topic: String?, data: ByteArray?): String? {
+        if (data == null) return null
+        return data.toString()
+    }
+
+}
+
+class StringSerializer : Serializer<Gadget> {
+    override fun serialize(topic: String?, data: Gadget?): ByteArray? {
+        if (data == null) return null
+        return jsonMapper.writeValueAsBytes(data)
+    }
+
+}
+
 class GadgetDeserializer : Deserializer<Gadget> {
     override fun deserialize(topic: String?, data: ByteArray?): Gadget? {
         if (data == null) return null
@@ -20,6 +36,7 @@ class GadgetDeserializer : Deserializer<Gadget> {
     }
 
 }
+
 
 
 // Custom Serializer and Deserializer for PurchaseEvent (for simplicity)

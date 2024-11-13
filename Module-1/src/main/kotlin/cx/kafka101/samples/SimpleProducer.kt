@@ -57,7 +57,7 @@ fun sendJsonMeldingMedNativeProducer(topic:String = "test"){
 fun sendJsonMeldingMedNativeJsonProducer(topic:String = "test"){
     val producer = createLensesJsonProducer() //merk denne!!
 
-    val gadget = Gadget("RED","1",30)
+    val gadget = Gadget("INDIGO","1",30)
     val futureResult = producer.send(
         ProducerRecord(
             topic,
