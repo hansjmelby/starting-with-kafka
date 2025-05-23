@@ -12,6 +12,7 @@ You need the following to get the most out of this module
 
 
 ## oppsett av miljø
+* Lenses : kjør doker-compose up i lenses katalogen
 * DB : Se readme i postgress katalog
 * CDC : Se readme i cdc_postgres katalog
 
