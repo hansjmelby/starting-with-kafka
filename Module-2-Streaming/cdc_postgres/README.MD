@@ -7,28 +7,19 @@ docker run -e ADV_HOST=127.0.0.1 -e EULA="https://licenses.lenses.io/download/le
 ```
 ## Sette opp Source connector
 
-#### Login inn i på http://localhost:3030. Brukernavn = admin, passord = admin
+#### Login inn i på http://localhost:9991. Brukernavn = admin, passord = admin
 
 ### Velg connector fra menyen
-![](lenses_connectors_1.png).
-
-### Velg new Connector
-
-### sett opp en source connector for postgress
-
-
-![](cdc_postgress_source.png)
+![](lenses_connector_oversikt.png).
 
 ### Fyll in nødvendge felter . Kopier fra eksempel under : kafka connector med full sporbarhet av endringer
+![](lenses_cdc_config.png).
 
-
-![](cdc_postgress_source_2.png)
 
 ### Bekreft kjørende prosess med å se på
-![](cdc_running_process.png)
+![](lenses_kjorende_connectors.png)
 
 ### Bekreft at det kommer meldinger på topic
-![](cdc_new_topic.png)
 
 ## kafka connector med full sporbarhet av endringer
 
