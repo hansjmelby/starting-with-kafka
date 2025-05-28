@@ -7,6 +7,9 @@ You need the following to get the most out of this module
 - gradle installed
 - Java 20
 
+## starte infrastruktur (kafka)
+1. gå in i lenses kataloen
+2. kjør docker-compose up
 
 ## Admin GUI for kafka
 http://localhost:9991
