@@ -2,9 +2,6 @@
 1. Ha en kjørende instans av Lenses Docker image
 2. Docker image må ha både broker og schema registry port forwarnig satt opp
 
-```
-docker run -e ADV_HOST=127.0.0.1 -e EULA="https://licenses.lenses.io/download/lensesdl?id=NØKKEL_FRA_EPOST" --rm -p 3030:3030 -p 9092:9092 -p 8081:8081 lensesio/box
-```
 ## Sette opp Source connector
 
 #### Login inn i på http://localhost:9991. Brukernavn = admin, passord = admin
