@@ -33,9 +33,22 @@ https://blog.dy.engineering/kafka-streams-and-rocksdb-in-the-space-time-continuu
 3. bygg på  lag en kode som hele tiden aggregerer opp hvor mange målinger som er sendt in av sensor 1
 4. bygg på 3 utvid koden til å legge de meldingene med id sensor-1 til eget topic med hva en navn du vil
 
-### midddel vanskelige 
-1. 
+### CDC 
+1. sett opp postgress (se postgress katalog og readme fil)
+2. sett opp CDC source (se postgress_cdc katalog)
+3. Prøv deg med flere forskjellige detaljer (full sporbarhet, kun nye verdier, og nye verdier med enkel nøkkel)
+ - hvilke av trategiene/configurasjonen er egnet for hva?
+4. sett opp cdc sink
 
+### mer komplekse oppgaver
+1. bruk et av eksemplene i kode (sensorReadingSample), eller lag ditt eget der du publiserer resultat fra et tidsvindu over i et eget topic.
+  - dersom du bruker eksemepl koden.
+    - vurder om du ønsker å opprette topic manuelt (via consolle) eller la koden gjøle det for deg (default instillinger)
+    - starte produsent FØR du starter konsument (om du velger å la kode opprette topic)
+2. bruk connector (jdbc?) til å lage nytt innslag  databse med resultatet fra det nye topicet (vinduet)
+  - er det noe forskjell om du bruker compacted topic eller ikke? 
+  - hvordan ser nøkkelen til topic ut? er den brukbar?
+5. 
 ### Vanskelige oppgaver
 1. Endre miljø og kode slik at SensorLocation topic blir populert fra cdc og en db i postgres.
 2. i CDC eksempel customer, lag en kode som filterer ut de hendelsene der en bruker bytter epost adresse og lag en eget topic customer_changed_email
